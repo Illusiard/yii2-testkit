@@ -2,20 +2,34 @@
 
 namespace Illusiard\Yii2Testkit\App;
 
+use yii\base\InvalidConfigException;
+use yii\console\Application as ConsoleApplication;
+use yii\web\Application as WebApplication;
+
 class AppFactory
 {
-    public function createConsoleApp(array $config): \yii\console\Application
+    /**
+     * @param array $config
+     * @return ConsoleApplication
+     * @throws InvalidConfigException
+     */
+    public function createConsoleApp(array $config): ConsoleApplication
     {
         $this->ensureEnv();
 
-        return new \yii\console\Application($config);
+        return new ConsoleApplication($config);
     }
 
-    public function createWebApp(array $config): \yii\web\Application
+    /**
+     * @param array $config
+     * @return WebApplication
+     * @throws InvalidConfigException
+     */
+    public function createWebApp(array $config): WebApplication
     {
         $this->ensureEnv();
 
-        return new \yii\web\Application($config);
+        return new WebApplication($config);
     }
 
     private function ensureEnv(): void

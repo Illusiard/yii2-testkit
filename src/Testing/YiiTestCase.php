@@ -4,6 +4,9 @@ namespace Illusiard\Yii2Testkit\Testing;
 
 use Illusiard\Yii2Testkit\App\AppFactory;
 use PHPUnit\Framework\TestCase;
+use Yii;
+use yii\base\InvalidConfigException;
+use yii\di\Container;
 
 class YiiTestCase extends TestCase
 {
@@ -21,6 +24,10 @@ class YiiTestCase extends TestCase
         ];
     }
 
+    /**
+     * @return void
+     * @throws InvalidConfigException
+     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -40,10 +47,10 @@ class YiiTestCase extends TestCase
     protected function tearDown(): void
     {
         if (class_exists('Yii', false)) {
-            \Yii::$app = null;
+            Yii::$app = null;
 
-            if (class_exists(\yii\di\Container::class)) {
-                \Yii::$container = new \yii\di\Container();
+            if (class_exists(Container::class)) {
+                Yii::$container = new Container();
             }
         }
 

@@ -4,6 +4,7 @@ namespace tests\unit;
 
 use Illusiard\Yii2Testkit\App\AppFactory;
 use PHPUnit\Framework\TestCase;
+use yii\console\Application;
 
 class AppFactoryTest extends TestCase
 {
@@ -16,6 +17,11 @@ class AppFactoryTest extends TestCase
             mkdir($vendorPath, 0777, true);
         }
 
+        $envDefined = defined('YII_ENV');
+        $debugDefined = defined('YII_DEBUG');
+        $envValue = $envDefined ? YII_ENV : null;
+        $debugValue = $debugDefined ? YII_DEBUG : null;
+
         $factory = new AppFactory();
         $app = $factory->createConsoleApp([
             'id' => 'test-app',
@@ -23,9 +29,28 @@ class AppFactoryTest extends TestCase
             'vendorPath' => $vendorPath,
         ]);
 
-        $this->assertInstanceOf(\yii\console\Application::class, $app);
+        $this->assertInstanceOf(Application::class, $app);
         $this->assertSame($app, \Yii::$app);
 
+        $this->assertTrue(defined('YII_ENV'));
+        $this->assertTrue(defined('YII_DEBUG'));
+
+        if ($envDefined) {
+            $this->assertSame($envValue, YII_ENV);
+        } else {
+            $this->assertSame('test', YII_ENV);
+        }
+
+        if ($debugDefined) {
+            $this->assertSame($debugValue, YII_DEBUG);
+        } else {
+            $this->assertTrue(YII_DEBUG);
+        }
+
         \Yii::$app = null;
+
+        if (class_exists(\yii\di\Container::class)) {
+            \Yii::$container = new \yii\di\Container();
+        }
     }
 }
