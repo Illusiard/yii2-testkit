@@ -1,0 +1,24 @@
+actor: FunctionalTester
+modules:
+  enabled:
+    - Yii2:
+        # Basic application example:
+        # configFile: 'config/test.php'
+        # cleanup: true
+        #
+        # Advanced application example (frontend):
+        # configFile: 'frontend/config/test.php'
+        # entryScript: 'frontend/web/index-test.php'
+        # cleanup: true
+        #
+        # Advanced application example (backend):
+        # configFile: 'backend/config/test.php'
+        # entryScript: 'backend/web/index-test.php'
+        # cleanup: true
+        #
+        # Console application example (optional):
+        # actor: ConsoleTester
+        # configFile: 'console/config/test.php'
+        # cleanup: true
+        cleanup: true
+        configFile: 'config/test.php'
