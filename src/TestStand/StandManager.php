@@ -9,9 +9,9 @@ use RuntimeException;
 
 class StandManager
 {
-    private DockerComposeCommandBuilder $commandBuilder;
+    private readonly DockerComposeCommandBuilder $commandBuilder;
     private ProcessRunner $processRunner;
-    private RuntimeEnvFileBuilder $runtimeEnvFileBuilder;
+    private readonly RuntimeEnvFileBuilder $runtimeEnvFileBuilder;
 
     public function __construct()
     {

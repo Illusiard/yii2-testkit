@@ -1,14 +1,15 @@
 {
   "name": "illusiard/yii2-testkit",
+  "description": "Minimal Yii2 testing kit with Codeception templates and a Docker test stand.",
   "type": "library",
   "license": "BSD-3-Clause",
   "require": {
-    "php": ">=8.1"
+    "php": "^8.5"
   },
   "require-dev": {
-    "codeception/codeception": "*",
-    "codeception/module-yii2": "*",
-    "yiisoft/yii2": "^2.0",
+    "codeception/codeception": "^5.2",
+    "codeception/module-yii2": "^1.0",
+    "yiisoft/yii2": "^2.0.55",
     "codeception/module-asserts": "^3.1"
   },
   "autoload": {

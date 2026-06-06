@@ -24,7 +24,7 @@ class StandConfigTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Test stand config file not found');
 
-        StandConfig::load(__DIR__ . '/../_data/stand/missing.php');
+        (void) StandConfig::load(__DIR__ . '/../_data/stand/missing.php');
     }
 
     public function testLoadThrowsWhenConfigIsNotArray(): void
@@ -32,7 +32,7 @@ class StandConfigTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('must return array');
 
-        StandConfig::load(__DIR__ . '/../_data/not_array.php');
+        (void) StandConfig::load(__DIR__ . '/../_data/not_array.php');
     }
 
     public function testLoadThrowsWhenRequiredKeysAreMissing(): void
@@ -40,7 +40,7 @@ class StandConfigTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('missing required keys');
 
-        StandConfig::load(__DIR__ . '/../_data/stand/missing_keys.php');
+        (void) StandConfig::load(__DIR__ . '/../_data/stand/missing_keys.php');
     }
 
     public function testLoadThrowsWhenEnvFileMissing(): void
@@ -48,7 +48,7 @@ class StandConfigTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Env file not found');
 
-        StandConfig::load(__DIR__ . '/../_data/stand/missing_env.php');
+        (void) StandConfig::load(__DIR__ . '/../_data/stand/missing_env.php');
     }
 
     public function testLoadThrowsWhenServiceIsUnsupported(): void
@@ -56,7 +56,7 @@ class StandConfigTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Unsupported test stand service');
 
-        StandConfig::load(__DIR__ . '/../_data/stand/unsupported_service.php');
+        (void) StandConfig::load(__DIR__ . '/../_data/stand/unsupported_service.php');
     }
 
     public function testLoadThrowsWhenServicesHasInvalidType(): void
@@ -64,7 +64,7 @@ class StandConfigTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('key "services" must be an array');
 
-        StandConfig::load(__DIR__ . '/../_data/stand/invalid_services_type.php');
+        (void) StandConfig::load(__DIR__ . '/../_data/stand/invalid_services_type.php');
     }
 
     public function testLoadThrowsWhenEnvFilesHasInvalidType(): void
@@ -72,7 +72,7 @@ class StandConfigTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('key "envFiles" must be an array');
 
-        StandConfig::load(__DIR__ . '/../_data/stand/invalid_env_files_type.php');
+        (void) StandConfig::load(__DIR__ . '/../_data/stand/invalid_env_files_type.php');
     }
 
     public function testLoadThrowsWhenAppConfigHasInvalidType(): void
@@ -80,7 +80,7 @@ class StandConfigTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('key "appConfig" must be an array');
 
-        StandConfig::load(__DIR__ . '/../_data/stand/invalid_app_config_type.php');
+        (void) StandConfig::load(__DIR__ . '/../_data/stand/invalid_app_config_type.php');
     }
 
     public function testLoadThrowsWhenProjectRootMissing(): void
@@ -88,7 +88,7 @@ class StandConfigTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('projectRoot');
 
-        StandConfig::load(__DIR__ . '/../_data/stand/missing_project_root.php');
+        (void) StandConfig::load(__DIR__ . '/../_data/stand/missing_project_root.php');
     }
 
     public function testLoadThrowsWhenWebRootMissing(): void
@@ -96,6 +96,6 @@ class StandConfigTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('webRoot');
 
-        StandConfig::load(__DIR__ . '/../_data/stand/missing_web_root.php');
+        (void) StandConfig::load(__DIR__ . '/../_data/stand/missing_web_root.php');
     }
 }

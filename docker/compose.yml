@@ -18,6 +18,8 @@ services:
   php-fpm:
     build:
       context: ./php
+      args:
+        TESTKIT_APT_FORCE_IPV4: ${TESTKIT_APT_FORCE_IPV4:-1}
     working_dir: /app
     volumes:
       - ${TESTKIT_PROJECT_ROOT}:/app

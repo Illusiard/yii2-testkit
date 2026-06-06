@@ -28,6 +28,7 @@ class YiiTestCase extends TestCase
      * @return void
      * @throws InvalidConfigException
      */
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();
@@ -44,6 +45,7 @@ class YiiTestCase extends TestCase
         $factory->createConsoleApp($config);
     }
 
+    #[\Override]
     protected function tearDown(): void
     {
         if (class_exists('Yii', false)) {

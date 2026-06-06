@@ -6,6 +6,7 @@ use InvalidArgumentException;
 
 class ConfigResolver
 {
+    #[\NoDiscard('as the loaded config array must be consumed')]
     public function loadPhp(string $path): array
     {
         if (!is_file($path)) {

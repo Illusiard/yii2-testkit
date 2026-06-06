@@ -6,6 +6,12 @@
 
 **Installation**
 
+Требования:
+
+- PHP 8.5+
+- Composer 2
+- `docker compose` для встроенного test stand
+
 Установите пакет как dev-зависимость:
 
 ```bash
@@ -42,7 +48,7 @@ final class MyServiceTest extends YiiTestCase
 
 **Test Stand**
 
-Пакет теперь включает минимальный встроенный слой test stand для Docker: `nginx + php-fpm` поднимаются всегда, а дополнительные сервисы выбираются через `Illusiard\Yii2Testkit\TestStand\TestServices`.
+Пакет теперь включает минимальный встроенный слой test stand для Docker: `nginx + php-fpm` на PHP 8.5 поднимаются всегда, а дополнительные сервисы выбираются через `Illusiard\Yii2Testkit\TestStand\TestServices`.
 
 Для работы test stand нужен установленный `docker compose`.
 

@@ -7,6 +7,7 @@ use RuntimeException;
 
 class RuntimeEnvFileBuilder
 {
+    #[\NoDiscard('as the generated runtime env file path must be passed to docker compose')]
     public function build(StandConfig $config): string
     {
         $targetFile = $this->buildTargetFile($config);

@@ -22,7 +22,7 @@ class ConfigResolverTest extends TestCase
         $resolver = new ConfigResolver();
 
         $this->expectException(InvalidArgumentException::class);
-        $resolver->loadPhp(__DIR__ . '/../_data/missing.php');
+        (void) $resolver->loadPhp(__DIR__ . '/../_data/missing.php');
     }
 
     public function testLoadPhpThrowsWhenNotArray(): void
@@ -30,6 +30,6 @@ class ConfigResolverTest extends TestCase
         $resolver = new ConfigResolver();
 
         $this->expectException(InvalidArgumentException::class);
-        $resolver->loadPhp(__DIR__ . '/../_data/not_array.php');
+        (void) $resolver->loadPhp(__DIR__ . '/../_data/not_array.php');
     }
 }

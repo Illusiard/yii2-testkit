@@ -33,6 +33,7 @@ class YiiTestCaseTest extends TestCase
 
 class YiiTestCaseStub extends YiiTestCase
 {
+    #[\Override]
     protected function appConfig(): array
     {
         $basePath = __DIR__ . '/../_data';

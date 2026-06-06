@@ -4,10 +4,10 @@ namespace Illusiard\Yii2Testkit\TestStand;
 
 final class TestServices
 {
-    public const MYSQL = 'mysql';
-    public const POSTGRESQL = 'postgresql';
-    public const REDIS = 'redis';
-    public const RABBITMQ = 'rabbitmq';
+    public const string MYSQL = 'mysql';
+    public const string POSTGRESQL = 'postgresql';
+    public const string REDIS = 'redis';
+    public const string RABBITMQ = 'rabbitmq';
 
     private function __construct()
     {

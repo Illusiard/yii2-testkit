@@ -14,6 +14,7 @@ class StandManagerTest extends TestCase
     private string $projectRoot;
     private string $runtimeEnvFile;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->projectRoot = (string) realpath(__DIR__ . '/../_data/stand/project');
@@ -26,6 +27,7 @@ class StandManagerTest extends TestCase
         }
     }
 
+    #[\Override]
     protected function tearDown(): void
     {
         $this->cleanupLogDirectory();
@@ -138,6 +140,7 @@ class StandManagerProcessRunnerStub extends ProcessRunner
     public array $calls = [];
     public array $responses = [];
 
+    #[\Override]
     public function run(array $command, array $env = []): string
     {
         $this->calls[] = [

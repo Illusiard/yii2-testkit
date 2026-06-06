@@ -6,22 +6,38 @@ use InvalidArgumentException;
 
 class StandConfig
 {
-    private const REQUIRED_KEYS = [
+    private const array REQUIRED_KEYS = [
         'services',
         'envFiles',
         'appConfig',
     ];
 
-    private const REQUIRED_APP_CONFIG_KEYS = [
+    private const array REQUIRED_APP_CONFIG_KEYS = [
         'projectRoot',
         'webRoot',
         'entryScript',
     ];
 
-    private array $services;
-    private array $envFiles;
-    private array $appConfig;
+    /**
+     * @var list<string>
+     */
+    private readonly array $services;
 
+    /**
+     * @var list<string>
+     */
+    private readonly array $envFiles;
+
+    /**
+     * @var array{projectRoot: string, webRoot: string, entryScript: string}
+     */
+    private readonly array $appConfig;
+
+    /**
+     * @param list<string> $services
+     * @param list<string> $envFiles
+     * @param array{projectRoot: string, webRoot: string, entryScript: string} $appConfig
+     */
     private function __construct(array $services, array $envFiles, array $appConfig)
     {
         $this->services = $services;
@@ -29,6 +45,7 @@ class StandConfig
         $this->appConfig = $appConfig;
     }
 
+    #[\NoDiscard('as the validated test stand configuration must be consumed')]
     public static function load(string $path): self
     {
         if (!is_file($path)) {
@@ -50,16 +67,25 @@ class StandConfig
         );
     }
 
+    /**
+     * @return list<string>
+     */
     public function getServices(): array
     {
         return $this->services;
     }
 
+    /**
+     * @return list<string>
+     */
     public function getEnvFiles(): array
     {
         return $this->envFiles;
     }
 
+    /**
+     * @return array{projectRoot: string, webRoot: string, entryScript: string}
+     */
     public function getAppConfig(): array
     {
         return $this->appConfig;
@@ -80,6 +106,9 @@ class StandConfig
         return $this->appConfig['entryScript'];
     }
 
+    /**
+     * @return list<string>
+     */
     private static function validateServices(mixed $services): array
     {
         if (!is_array($services)) {
@@ -110,6 +139,9 @@ class StandConfig
         return array_values(array_unique($validatedServices));
     }
 
+    /**
+     * @return list<string>
+     */
     private static function validateEnvFiles(mixed $envFiles): array
     {
         if (!is_array($envFiles)) {
@@ -133,6 +165,9 @@ class StandConfig
         return $validatedEnvFiles;
     }
 
+    /**
+     * @return array{projectRoot: string, webRoot: string, entryScript: string}
+     */
     private static function validateAppConfig(mixed $appConfig): array
     {
         if (!is_array($appConfig)) {

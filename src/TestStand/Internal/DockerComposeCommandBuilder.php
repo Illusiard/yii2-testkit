@@ -7,13 +7,14 @@ use RuntimeException;
 
 class DockerComposeCommandBuilder
 {
-    private string $composeFile;
+    private readonly string $composeFile;
 
     public function __construct(?string $composeFile = null)
     {
         $this->composeFile = $composeFile ?: dirname(__DIR__, 3) . '/docker/compose.yml';
     }
 
+    #[\NoDiscard('as the docker compose environment must be passed to the process runner')]
     public function buildEnvironment(StandConfig $config): array
     {
         return [
@@ -23,6 +24,7 @@ class DockerComposeCommandBuilder
         ];
     }
 
+    #[\NoDiscard('as the docker compose up command must be passed to the process runner')]
     public function buildUpCommand(StandConfig $config, bool $build): array
     {
         $command = $this->createBaseCommand($config);
@@ -40,6 +42,7 @@ class DockerComposeCommandBuilder
         return $command;
     }
 
+    #[\NoDiscard('as the docker compose down command must be passed to the process runner')]
     public function buildDownCommand(StandConfig $config, bool $withVolumes): array
     {
         $command = $this->createBaseCommand($config);
@@ -52,6 +55,7 @@ class DockerComposeCommandBuilder
         return $command;
     }
 
+    #[\NoDiscard('as the docker compose logs command must be passed to the process runner')]
     public function buildComposeLogsCommand(StandConfig $config): array
     {
         $command = $this->createBaseCommand($config);
@@ -61,6 +65,7 @@ class DockerComposeCommandBuilder
         return $command;
     }
 
+    #[\NoDiscard('as the service logs command must be passed to the process runner')]
     public function buildServicesLogsCommand(StandConfig $config): array
     {
         $command = $this->createBaseCommand($config);
@@ -93,8 +98,9 @@ class DockerComposeCommandBuilder
     private function buildProjectName(StandConfig $config): string
     {
         $projectRoot = $config->getProjectRoot();
-        $baseName = basename($projectRoot);
-        $normalizedBaseName = preg_replace('/[^a-z0-9_-]/', '_', strtolower($baseName));
+        $normalizedBaseName = basename($projectRoot)
+            |> strtolower(...)
+            |> (static fn (string $baseName): string|null => preg_replace('/[^a-z0-9_-]/', '_', $baseName));
 
         if (!is_string($normalizedBaseName) || $normalizedBaseName === '') {
             $normalizedBaseName = 'project';
@@ -113,5 +119,4 @@ class DockerComposeCommandBuilder
             $config->getServices()
         );
     }
-
 }

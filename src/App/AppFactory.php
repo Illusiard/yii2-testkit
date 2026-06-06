@@ -9,8 +9,6 @@ use yii\web\Application as WebApplication;
 class AppFactory
 {
     /**
-     * @param array $config
-     * @return ConsoleApplication
      * @throws InvalidConfigException
      */
     public function createConsoleApp(array $config): ConsoleApplication
@@ -21,8 +19,6 @@ class AppFactory
     }
 
     /**
-     * @param array $config
-     * @return WebApplication
      * @throws InvalidConfigException
      */
     public function createWebApp(array $config): WebApplication
